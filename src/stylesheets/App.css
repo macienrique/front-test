@@ -1,0 +1,121 @@
+.tab {
+	color: #7a8900;
+	list-style-type: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-size: 17px;
+}
+
+.tab:hover,
+#saveTab:hover {
+	background-color: #b3be60;
+	color: #ffffff;
+}
+
+.tabSelected {
+	background-color: #7a8900;
+	color: #ffffff;
+}
+
+.keySelect {
+	color: white;
+	background-color: black;
+	width: 10vw;
+	height: 30px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-right: 10px;
+	padding-left: 10px;
+	font-size: 12px;
+}
+
+.keySelect:hover {
+	background-color: #7a8900;
+}
+
+#saveTab {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	min-width: 75px;
+	color: white;
+	background-color: #7a8900;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	width: 5vw;
+	padding: 12px 12px;
+	transition: 0.3s;
+	font-size: 14px;
+}
+
+input {
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 2px solid #ddd;
+	border-top: none;
+}
+
+svg {
+	fill: #7a8900;
+}
+
+.selectCustom:hover {
+	border: 1px solid #7a8900 !important;
+}
+
+.container {
+	display: block;
+	position: relative;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+.checkmark {
+	position: absolute;
+	height: 18px;
+	width: 18px;
+	background-color: #eee;
+}
+
+.container input:checked ~ .checkmark {
+	background-color: orange;
+}
+
+.checkmark:after {
+	content: "";
+	position: absolute;
+	display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+.container .checkmark:after {
+	left: 5px;
+	top: 1px;
+	width: 5px;
+	height: 10px;
+	border: solid white;
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
