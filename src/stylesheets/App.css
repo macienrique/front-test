@@ -1,3 +1,21 @@
+.css-vj8t7z {
+	border-top: none !important;
+	width: 20vw !important;
+	border-bottom: 2px solid #ddd !important;
+}
+
+.css-d8oujb {
+	width: 0px !important;
+}
+
+.css-19bqh2r {
+	fill: #7a8900 !important;
+}
+
+.css-2o5izw:hover {
+	border-color: #7a8900 !important;
+}
+
 .tab {
 	color: #7a8900;
 	list-style-type: none;
@@ -10,7 +28,9 @@
 }
 
 .tab:hover,
-#saveTab:hover {
+#saveTab:hover,
+#addItem:hover,
+#requestTab:hover {
 	background-color: #b3be60;
 	color: #ffffff;
 }
@@ -23,7 +43,8 @@
 .keySelect {
 	color: white;
 	background-color: black;
-	width: 10vw;
+	cursor: pointer;
+	width: 14vw;
 	height: 30px;
 	display: flex;
 	justify-content: space-between;
@@ -42,6 +63,7 @@
 	justify-content: space-around;
 	align-items: center;
 	min-width: 75px;
+	height: 12px;
 	color: white;
 	background-color: #7a8900;
 	border: none;
@@ -53,6 +75,25 @@
 	font-size: 14px;
 }
 
+#saveTab:active,
+#addItem:active,
+#requestTab:active {
+	background-color: #7a8900;
+}
+
+#addItem {
+	transition: 0.3s;
+}
+
+#requestTab {
+	display: flex;
+	justify-content: center;
+	width: 12%;
+	cursor: pointer;
+	padding: 14px 16px;
+	margin-bottom: 0px;
+}
+
 input {
 	border-left: 1px solid #ddd;
 	border-right: 1px solid #ddd;
@@ -60,6 +101,11 @@ input {
 	border-top: none;
 }
 
+input:disabled {
+	background: white;
+	border: none;
+	color: black;
+}
 svg {
 	fill: #7a8900;
 }
