@@ -164,7 +164,7 @@ svg {
 .loader {
 	border: 16px solid #f3f3f3;
 	border-radius: 50%;
-	border-top: 16px solid #d81e05;
+	border-top: 16px solid #7a8900;
 	width: 120px;
 	height: 120px;
 	-webkit-animation: spin 2s linear infinite; /* Safari */

@@ -5,7 +5,7 @@ const AddItem = (props) => {
 	const { handleNewPossibleValue } = props;
 	return (
 		<div id="addItem" onClick={handleNewPossibleValue} style={{ ...style.div, width: props.width }}>
-			<img style={style.img} src={addItem} alt="" />
+			<img style={style.img} src={addItem} alt="+" />
 			<span>{props.name}</span>
 		</div>
 	);

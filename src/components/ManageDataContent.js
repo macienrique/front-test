@@ -65,9 +65,8 @@ class ManageDataContent extends React.Component {
 				newValue: '',
 				newDescription: ''
 			};
-		} else {
-			return null;
 		}
+		return null;
 	}
 
 	render() {
@@ -86,7 +85,14 @@ class ManageDataContent extends React.Component {
 
 		return (
 			<div style={style.content}>
-				<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+				<div
+					style={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						alignItems: edit ? 'flex-start' : 'center',
+						marginBottom: edit ? '10px' : '20px'
+					}}
+				>
 					{edit ? (
 						<div style={style.column}>
 							<label>Key name</label>
@@ -96,7 +102,7 @@ class ManageDataContent extends React.Component {
 								name="name"
 								value={name}
 								onChange={this.handleChange}
-								style={{ paddingBottom: '1vh', paddingTop: '1vh' }}
+								style={{ paddingBottom: '10px', paddingTop: '5px' }}
 							/>
 						</div>
 					) : (
@@ -109,20 +115,20 @@ class ManageDataContent extends React.Component {
 					</div>
 				</div>
 				<div style={style.column}>
-					<label>Description</label>
+					<label style={{ fontSize: edit ? '12px' : '16px' }}>Description</label>
 					<input
 						type="text"
 						placeholder="Input description"
 						name="description"
 						onChange={this.handleChange}
 						value={description}
-						style={{ paddingBottom: '4vh', paddingTop: '1vh' }}
+						style={{ ...style.input, paddingBottom: edit && '30px' }}
 						disabled={!edit}
 					/>
 				</div>
 
 				<div style={style.column}>
-					<label>Type</label>
+					<label style={{ fontSize: edit ? '12px' : '16px' }}>Type</label>
 					{edit ? (
 						<div style={{ width: '20vw' }}>
 							<Select
@@ -142,14 +148,14 @@ class ManageDataContent extends React.Component {
 							name="typeDesc"
 							onChange={this.handleChange}
 							value={typeDesc}
-							style={{ paddingBottom: '4vh', paddingTop: '1vh' }}
+							style={style.input}
 							disabled={!edit}
 						/>
 					)}
 				</div>
 				<div>
 					{edit ? (
-						<div>
+						<div style={{ paddingBottom: '20px' }}>
 							<label className="container">
 								<input
 									type="checkbox"
@@ -163,13 +169,13 @@ class ManageDataContent extends React.Component {
 						</div>
 					) : (
 						<div style={style.column}>
-							<label>Sensitivity</label>
+							<label style={{ fontSize: '16px' }}>Sensitivity</label>
 							<input
 								type="text"
 								placeholder="Sensitivity"
 								name="sensitivity"
 								value="This is personal data and cannot be distributed in raw form"
-								style={{ paddingTop: '1vh' }}
+								style={style.input}
 								disabled={!edit}
 							/>
 						</div>
@@ -192,7 +198,7 @@ class ManageDataContent extends React.Component {
 								name="newValue"
 								value={newValue}
 								onChange={this.handleChange}
-								style={{ paddingTop: '1vh', marginRight: '70px', width: '20%' }}
+								style={{ paddingTop: '1vh', marginRight: '7vw', width: '20%' }}
 							/>
 							<input
 								type="text"
@@ -221,13 +227,11 @@ const style = {
 	content: {
 		border: BORDER_STYLE,
 		width: '70vw',
-		minHeight: '400px',
-		height: '60vh',
 		display: 'flex',
 		flexDirection: 'column',
-		justifyContent: 'space-between',
 		fontSize: '12px',
-		padding: '3vw'
+		padding: '3vw',
+		marginBottom: '40px'
 	},
 	possibleValue: {
 		display: 'inline-flex',
@@ -236,11 +240,16 @@ const style = {
 	},
 	column: {
 		display: 'flex',
-		flexDirection: 'column'
+		flexDirection: 'column',
+		marginBottom: '20px'
 	},
 	img: {
 		width: '14px',
 		height: '14px'
+	},
+	input: {
+		fontSize: '12px',
+		paddingTop: '10px'
 	}
 };
 

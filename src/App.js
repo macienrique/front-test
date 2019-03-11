@@ -42,16 +42,16 @@ class App extends Component {
 		await this.setState({ edit: !this.state.edit });
 	}
 
-	async componentWillMount() {
+	componentWillMount() {
 		// Simulating that MANAGE_DATA could be very big, I add a loading screen.
-		await this.setState({ data: MANAGE_DATA, loading: false });
+		setTimeout(async () => await this.setState({ data: MANAGE_DATA, loading: false }), 1000);
 	}
 
 	render() {
 		const { keySelect, data, tag, edit, loading } = this.state;
 		return loading ? (
 			<div style={styles.loader}>
-				<h1>LOADING...</h1>
+				<h1>LOADING DATA, PLEASE WAIT...</h1>
 				<div className="loader" />
 			</div>
 		) : (
