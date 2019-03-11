@@ -3,7 +3,8 @@ A front-end application developed with ReactJS by Enrique Macias.
 ## Available Scripts
 
 In the project directory, you can run:
-
+### `npm install`
+to install the dependencies and
 ### `npm start`
 
 Runs the app in the development mode.<br>
