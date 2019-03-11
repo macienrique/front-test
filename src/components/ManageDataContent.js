@@ -9,22 +9,27 @@ import editIcon from '../images/edit.svg';
 
 import { BORDER_STYLE } from '../util/constants';
 
-class DataContent extends React.Component {
+class ManageDataContent extends React.Component {
 	constructor(props) {
 		super(props);
 		const { data, edit } = this.props;
 		this.state = {
 			key: data.key,
+			name: data.name,
 			description: data.description,
 			possibleValues: data.possibleValues,
 			typeSelected: data.typeSelected,
 			typeDesc: data.typeDesc,
 			sensitivity: data.sensitivity,
-			edit: edit
+			edit: edit,
+			newPossibleValue: false,
+			newValue: '',
+			newDescription: ''
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleCheckbox = this.handleCheckbox.bind(this);
+		this.handleNewPossibleValue = this.handleNewPossibleValue.bind(this);
 	}
 
 	async handleChange(evt) {
@@ -35,16 +40,30 @@ class DataContent extends React.Component {
 		await this.setState({ sensitivity: !this.state.sensitivity });
 	}
 
+	async handleNewPossibleValue() {
+		const { newPossibleValue, newValue, newDescription } = this.state;
+		if (newPossibleValue && newValue && newDescription) {
+			let newObj = { label: newValue, value: newValue, description: newDescription };
+			let newPosValues = [ ...this.state.possibleValues, newObj ];
+			await this.setState({ possibleValues: newPosValues, newValue: '', newDescription: '' });
+		}
+		await this.setState({ newPossibleValue: !this.state.newPossibleValue });
+	}
+
 	static getDerivedStateFromProps(nextProps, prevState) {
 		if (nextProps.data.key !== prevState.key || nextProps.edit !== prevState.edit) {
 			return {
 				key: nextProps.data.key,
+				name: nextProps.data.name,
 				description: nextProps.data.description,
 				possibleValues: nextProps.data.possibleValues,
 				typeSelected: nextProps.data.typeSelected,
 				typeDesc: nextProps.data.typeDesc,
 				sensitivity: nextProps.data.sensitivity,
-				edit: nextProps.edit
+				edit: nextProps.edit,
+				newPossibleValue: false,
+				newValue: '',
+				newDescription: ''
 			};
 		} else {
 			return null;
@@ -52,7 +71,18 @@ class DataContent extends React.Component {
 	}
 
 	render() {
-		const { key, description, typeSelected, typeDesc, possibleValues, sensitivity, edit } = this.state;
+		const {
+			name,
+			description,
+			typeSelected,
+			typeDesc,
+			possibleValues,
+			sensitivity,
+			edit,
+			newPossibleValue,
+			newValue,
+			newDescription
+		} = this.state;
 
 		return (
 			<div style={style.content}>
@@ -63,14 +93,14 @@ class DataContent extends React.Component {
 							<input
 								type="text"
 								placeholder="Input key name"
-								name="key"
-								value={key}
+								name="name"
+								value={name}
 								onChange={this.handleChange}
 								style={{ paddingBottom: '1vh', paddingTop: '1vh' }}
 							/>
 						</div>
 					) : (
-						<h2>{key}</h2>
+						<h2>{name}</h2>
 					)}
 
 					<div id="saveTab" onClick={() => this.props.handleEdit(this.state)}>
@@ -98,7 +128,10 @@ class DataContent extends React.Component {
 							<Select
 								value={typeSelected}
 								onChange={(typeSelected) => this.setState({ typeSelected })}
-								options={possibleValues}
+								options={possibleValues.map((val) => {
+									val.label = val.label.replace(/[{}]/g, '');
+									return val;
+								})}
 								disabled={!edit}
 							/>
 						</div>
@@ -151,7 +184,33 @@ class DataContent extends React.Component {
 					{possibleValues.map((val, index) => (
 						<PossibleValues key={index} value={val.value} description={val.description} />
 					))}
-					{edit && <AddItem name="Add possible value" width="15%" />}
+					{newPossibleValue && (
+						<div style={{ display: 'inline-flex' }}>
+							<input
+								type="text"
+								placeholder="New value"
+								name="newValue"
+								value={newValue}
+								onChange={this.handleChange}
+								style={{ paddingTop: '1vh', marginRight: '70px', width: '20%' }}
+							/>
+							<input
+								type="text"
+								placeholder="New description"
+								name="newDescription"
+								value={newDescription}
+								onChange={this.handleChange}
+								style={{ paddingTop: '1vh', width: '60%' }}
+							/>
+						</div>
+					)}
+					{edit && (
+						<AddItem
+							name={!newPossibleValue ? 'Add possible value' : 'Add'}
+							handleNewPossibleValue={this.handleNewPossibleValue}
+							width={!newPossibleValue ? '15%' : '5%'}
+						/>
+					)}
 				</div>
 			</div>
 		);
@@ -162,18 +221,13 @@ const style = {
 	content: {
 		border: BORDER_STYLE,
 		width: '70vw',
-		minHeight: '480px',
+		minHeight: '400px',
 		height: '60vh',
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'space-between',
 		fontSize: '12px',
 		padding: '3vw'
-	},
-	selectCustom: {
-		borderTop: 'none',
-		width: '20vw',
-		borderBottom: '2px solid #ddd'
 	},
 	possibleValue: {
 		display: 'inline-flex',
@@ -190,4 +244,4 @@ const style = {
 	}
 };
 
-export default DataContent;
+export default ManageDataContent;

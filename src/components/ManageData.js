@@ -1,11 +1,11 @@
 import React from 'react';
 import KeySelect from './KeySelect';
-import DataContent from './DataContent';
+import ManageDataContent from './ManageDataContent';
 import AddItem from './AddItem';
 
 import { BORDER_STYLE, TAG_ARRAY } from '../util/constants';
 
-const Manage = (props) => {
+const ManageData = (props) => {
 	const { keySelect, handleChange, handleEdit, data, edit } = props;
 
 	return (
@@ -24,7 +24,7 @@ const Manage = (props) => {
 					))}
 					{!edit && <AddItem name="Add key" width="35%" />}
 				</div>
-				<DataContent data={data} handleEdit={handleEdit} edit={edit} />
+				<ManageDataContent data={data} handleEdit={handleEdit} edit={edit} />
 			</div>
 		</div>
 	);
@@ -37,4 +37,4 @@ const style = {
 	}
 };
 
-export default Manage;
+export default ManageData;

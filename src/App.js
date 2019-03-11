@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import Manage from './components/Manage';
+import ManageData from './components/ManageData';
 import Requests from './components/Requests';
+import ComingSoon from './components/ComingSoon';
 import { MANAGE_DATA } from './util/pageData';
 import { TAG_ARRAY } from './util/constants';
 
@@ -18,8 +19,8 @@ class App extends Component {
 			keySelect: 0,
 			tag: TAG_ARRAY[0],
 			data: null,
-			loading: true, // ver loading
-			edit: false
+			edit: false,
+			loading: true
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -42,13 +43,19 @@ class App extends Component {
 	}
 
 	async componentWillMount() {
-		await this.setState({ data: MANAGE_DATA });
+		// Simulating that MANAGE_DATA could be very big, I add a loading screen.
+		await this.setState({ data: MANAGE_DATA, loading: false });
 	}
 
 	render() {
-		const { keySelect, data, tag, edit } = this.state;
-		return (
-			<Tabs selectedTabClassName="tabSelected" defaultIndex={1}>
+		const { keySelect, data, tag, edit, loading } = this.state;
+		return loading ? (
+			<div style={styles.loader}>
+				<h1>LOADING...</h1>
+				<div className="loader" />
+			</div>
+		) : (
+			<Tabs selectedTabClassName="tabSelected" defaultIndex={2}>
 				<TabList style={styles.tablist}>
 					<div>
 						<span style={styles.span}>DATA GATE</span>
@@ -61,14 +68,14 @@ class App extends Component {
 				</TabList>
 
 				<TabPanel style={{ paddingLeft: '5vw' }}>
-					<h2>Any content 1</h2>
+					<ComingSoon />
 				</TabPanel>
 				<TabPanel style={{ ...styles.tabPanel, paddingLeft: '10vw', paddingRight: '11vw' }}>
 					<Requests />
 				</TabPanel>
 
 				<TabPanel style={{ ...styles.tabPanel, paddingLeft: '3vw' }}>
-					<Manage
+					<ManageData
 						keySelect={keySelect}
 						edit={edit}
 						handleEdit={this.handleEdit}
@@ -98,6 +105,14 @@ const styles = {
 		display: 'inline-flex',
 		alignItems: 'center',
 		paddingLeft: '10px'
+	},
+	loader: {
+		display: 'flex',
+		width: '100vw',
+		height: '100vh',
+		justifyContent: 'center',
+		alignItems: 'center',
+		flexDirection: 'column'
 	}
 };
 

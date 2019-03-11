@@ -5,5 +5,5 @@ export const REQUESTS_ARRAY = [ 'ALL', 'PENDING', 'APPROVED', 'DENIED' ];
 export const STATUS_COLORS = {
 	Pending: 'black',
 	Approved: PRIMARY_COLOR,
-	Denied: 'red'
+	Denied: '#BC0000'
 };

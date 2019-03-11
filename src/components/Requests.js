@@ -57,7 +57,8 @@ const style = {
 	content: {
 		display: 'flex',
 		flexDirection: 'column',
-		minHeight: '500px',
+		maxWidth: '750px',
+		minHeight: '650px',
 		height: '80vh'
 	},
 	tabs: {

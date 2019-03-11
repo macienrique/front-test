@@ -2,8 +2,9 @@ import React from 'react';
 import addItem from '../images/addItem.svg';
 
 const AddItem = (props) => {
+	const { handleNewPossibleValue } = props;
 	return (
-		<div id="addItem" style={{ ...style.div, width: props.width }}>
+		<div id="addItem" onClick={handleNewPossibleValue} style={{ ...style.div, width: props.width }}>
 			<img style={style.img} src={addItem} alt="" />
 			<span>{props.name}</span>
 		</div>

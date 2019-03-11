@@ -6,8 +6,8 @@ const PendingRequest = (props) => {
 
 	return (
 		<div style={style.content}>
-			<span style={{ width: '25%' }}>{date}</span>
-			<span style={{ width: '65%' }}>{reason}</span>
+			<span style={{ width: '25%', fontSize: '12px' }}>{date}</span>
+			<span style={{ width: '65%', fontSize: '12px' }}>{reason}</span>
 			<div
 				style={{
 					...style.status,

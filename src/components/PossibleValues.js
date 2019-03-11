@@ -1,15 +1,17 @@
 import React from 'react';
 
 const PossibleValues = (props) => {
+	const italic = props.value.includes('{') && props.value.includes('}');
+
 	return (
-		<div style={styles}>
-			<span style={{ width: '30%' }}>{props.value}</span>
+		<div style={style}>
+			<span style={{ width: '30%', fontStyle: italic && 'italic' }}>{props.value}</span>
 			<span style={{ width: '70%' }}>{props.description}</span>
 		</div>
 	);
 };
 
-const styles = {
+const style = {
 	display: 'inline-flex',
 	paddingLeft: '10px',
 	paddingBottom: '10px',
