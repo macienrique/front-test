@@ -1,4 +1,4 @@
-A front-end application developed with ReactJS by Enrique Macias.
+A front-end application developed with ReactJS by Enrique Macias. It showcases how you can develop and style an application using React without depending too much on external dependencies.
 
 ## Available Scripts
 
